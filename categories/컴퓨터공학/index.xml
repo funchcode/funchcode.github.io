@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Funch DevLog</title>
-    <link>https://funchcode.github.io/</link>
-    <description>Recent content on Funch DevLog</description>
+    <title>컴퓨터공학 on Funch DevLog</title>
+    <link>https://funchcode.github.io/categories/%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%B5%ED%95%99/</link>
+    <description>Recent content in 컴퓨터공학 on Funch DevLog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 24 Oct 2020 14:23:58 +0900</lastBuildDate><atom:link href="https://funchcode.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>일상을 기록하는 나만의 블로그 시작</title>
-      <link>https://funchcode.github.io/posts/2020-10-24-init/</link>
-      <pubDate>Sat, 24 Oct 2020 14:23:58 +0900</pubDate>
-      
-      <guid>https://funchcode.github.io/posts/2020-10-24-init/</guid>
-      <description> </description>
-    </item>
-    
+    <lastBuildDate>Sat, 24 Oct 2020 14:23:58 +0900</lastBuildDate><atom:link href="https://funchcode.github.io/categories/%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%B5%ED%95%99/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>자료구조 정리</title>
       <link>https://funchcode.github.io/posts/2020-10-24-data-structure/</link>

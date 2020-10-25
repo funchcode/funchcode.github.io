@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>자료구조 정리 | Funch DevLog</title>
+
+    
+<link href="" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="funch" />
+<meta name="description" content="자료 구조란 무엇인가 ? 영어로는 Data Structure라고 한다.
+가장 일차원적으로 단어를 뜯어내어 생각해보자한다.
+ Data: 한글로 직역하면 &amp;ldquo;자료&amp;quot;이다. 이는 현실 세계로부터 수집한 자료의 사실이나 개념의 값을 말한다. Structure: 일정한 설계 및 규칙을 가지며 대상이 얽어진 것을 말한다. 정보(Information): 특정한 용도로 사용하기 위해 자료를 처리/가공한 형태의 데이터를 정보라고 한다.  자료구조를 사용하는 목적은 ?  수 많은 자료의 데이터를 조직화하여 저장, 표현, 처리하기 위함이다.  자료구조를 고민해야하는 이유 ?  먼저 다양한 자료구조가 존재하지만, 모든 목적에 적합한 단일한 자료구조가 없다." />
+
+
+
+<meta name="generator" content="Hugo 0.76.5" />
+
+<link rel="canonical" href="https://funchcode.github.io/posts/2020-10-24-data-structure/" />
+
+
+<meta property="og:title" content="자료구조 정리" />
+<meta property="og:description" content="자료 구조란 무엇인가 ? 영어로는 Data Structure라고 한다.
+가장 일차원적으로 단어를 뜯어내어 생각해보자한다.
+ Data: 한글로 직역하면 &ldquo;자료&quot;이다. 이는 현실 세계로부터 수집한 자료의 사실이나 개념의 값을 말한다. Structure: 일정한 설계 및 규칙을 가지며 대상이 얽어진 것을 말한다. 정보(Information): 특정한 용도로 사용하기 위해 자료를 처리/가공한 형태의 데이터를 정보라고 한다.  자료구조를 사용하는 목적은 ?  수 많은 자료의 데이터를 조직화하여 저장, 표현, 처리하기 위함이다.  자료구조를 고민해야하는 이유 ?  먼저 다양한 자료구조가 존재하지만, 모든 목적에 적합한 단일한 자료구조가 없다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://funchcode.github.io/posts/2020-10-24-data-structure/" />
+<meta property="article:published_time" content="2020-10-24T14:23:58+09:00" />
+<meta property="article:modified_time" content="2020-10-24T14:23:58+09:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="자료구조 정리"/>
+<meta name="twitter:description" content="자료 구조란 무엇인가 ? 영어로는 Data Structure라고 한다.
+가장 일차원적으로 단어를 뜯어내어 생각해보자한다.
+ Data: 한글로 직역하면 &ldquo;자료&quot;이다. 이는 현실 세계로부터 수집한 자료의 사실이나 개념의 값을 말한다. Structure: 일정한 설계 및 규칙을 가지며 대상이 얽어진 것을 말한다. 정보(Information): 특정한 용도로 사용하기 위해 자료를 처리/가공한 형태의 데이터를 정보라고 한다.  자료구조를 사용하는 목적은 ?  수 많은 자료의 데이터를 조직화하여 저장, 표현, 처리하기 위함이다.  자료구조를 고민해야하는 이유 ?  먼저 다양한 자료구조가 존재하지만, 모든 목적에 적합한 단일한 자료구조가 없다."/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/icomoon.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/github-markdown.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+<style>
+  a:hover {
+    text-decoration: underline; 
+  }
+
+  
+  a {
+    color: seagreen !important;
+  }
+  
+
+  
+  .inverted a,
+  .inverted a:hover {
+     color: darkseagreen !important;
+  }
+  
+
+  
+  body.default {
+    
+    background-color: #ccc;
+    
+
+    
+    background-image: url(/me/background.jpg);
+    
+  }
+  
+
+  
+  body.dark {
+    
+    background-color: black;
+    
+
+    
+    background-image: url(/me/background-dark.jpg);
+    
+  }
+  
+</style>
+
+    
+
+
+  
+    <link rel="stylesheet" data-highlight href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/gruvbox-light.min.css" />
+  
+
+
+
+
+
+  </head>
+
+  <body class="default">
+    
+<nav class="ui secondary menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="Home" onclick="window.location.href = 'https:\/\/funchcode.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+  <div class="item">
+    <i class="large link search icon" onclick="toggleSearch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          <div class="dream-max-width">
+            
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id="dream-save-post-as-img">
+    
+    <section class="ui top attached segment cover">
+      <div class="cover-img" style="background-image: url(/thumbnail/data-structure.jpg);"></div>
+    </section>
+    
+    <section class="ui attached segment">
+      <header>
+        <h1 class="ui large header">
+          자료구조 정리
+          <div class="sub header">
+            @
+            
+              
+                funch
+              
+            
+
+            | 
+                Saturday, Oct 24, 2020
+              
+
+            | 2 minute read
+
+            | Update at
+              
+                Saturday, Oct 24, 2020
+              
+          </div>
+        </h1>
+      </header>
+
+      <article class="main"><hr>
+<h2 id="자료-구조란-무엇인가-">자료 구조란 무엇인가 ?</h2>
+<p>영어로는 <strong>Data Structure</strong>라고 한다.<br>
+가장 일차원적으로 단어를 뜯어내어 생각해보자한다.</p>
+<ul>
+<li><strong>Data</strong>: 한글로 직역하면 &ldquo;자료&quot;이다. 이는 <u>현실 세계로부터 수집한 자료의 사실이나 개념의 값</u>을 말한다.</li>
+<li><strong>Structure</strong>: 일정한 설계 및 규칙을 가지며 대상이 <u>얽어진 것</u>을 말한다.</li>
+<li><strong>정보(Information)</strong>: 특정한 용도로 사용하기 위해 자료를 처리/가공한 형태의 데이터를 정보라고 한다.</li>
+</ul>
+<p><img src="/attach/data-structures.jpeg" alt="data-structures"></p>
+<h2 id="자료구조를-사용하는-목적은-">자료구조를 사용하는 목적은 ?</h2>
+<ul>
+<li>수 많은 자료의 데이터를 조직화하여 저장, 표현, 처리하기 위함이다.</li>
+</ul>
+<h2 id="자료구조를-고민해야하는-이유-">자료구조를 고민해야하는 이유 ?</h2>
+<ul>
+<li>먼저 다양한 자료구조가 존재하지만, 모든 목적에 적합한 단일한 자료구조가 없다.</li>
+<li>따라서, 삽입, 삭제, 비교, 교환, 검색 등의 자료의 특성을 고려하여 자료구조를 선택하면 연산의 횟수를 줄일 수 있고, 메모리 용량과 같은 자원을 최소한으로 사용 가능하다.</li>
+</ul>
+<h2 id="자료구조의-종류는-어떤게-있을까-">자료구조의 종류는 어떤게 있을까 ?</h2>
+<ul>
+<li>
+<p><strong>단순 구조 (통상, 자료구조로써 구분 포함시키지 않습니다.)</strong></p>
+<ul>
+<li>정수, 실수, 문자, 문자열 등의 기본 자료형.</li>
+</ul>
+</li>
+<li>
+<p><strong>선형 구조 (자료간의 연결 관계가 전후 1:1 연결 형태를 선형(linear) 관계라고 합니다.)</strong></p>
+<ul>
+<li>배열
+<ul>
+<li>가장 일반적인 구조이다.</li>
+</ul>
+</li>
+<li>리스트
+<ul>
+<li>각 노드가 데이터와 포인터를 가지고 한 줄로 연결되어 있는 방식으로 데이터를 저장하는 자료 구조이다.</li>
+</ul>
+</li>
+<li>스택
+<ul>
+<li>후입선출(LIFO: Last In First Out)의 자료구조이다.</li>
+</ul>
+</li>
+<li>큐
+<ul>
+<li>선입선출(FIFO: First In First Out)의 자료구조이다.</li>
+</ul>
+</li>
+<li>덱
+<ul>
+<li>앞, 뒤 양쪽으로 삽입과 제거가 가능한 자료구조이다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>비선형 구조 (자료간의 연결 관계가 전후 1:다 또는 다:다 연결 형태를 비선형(nonlinear) 관계라고 합니다.)</strong></p>
+<ul>
+<li>트리
+<ul>
+<li>부모 노드의 밑에 여러 자식의 노드가 연결되어 있고, 자식의 노드가 부모 노드가 되어 다시 각각의 자식 노드가 연결되어 있는 재귀적 형태의 자료구조이다.</li>
+</ul>
+</li>
+<li>그래프
+<ul>
+<li>노드와 그 노드를 연결하는 간선을 하나로 모아 놓은 자료 구조를 말한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="자료구조를-선택할-때-고려-사항">자료구조를 선택할 때 고려 사항</h2>
+<ul>
+<li>데이터의 양</li>
+<li>데이터의 사용 횟수 및 방법</li>
+<li>요구되는 기억장치의 양</li>
+<li>데이터 수정에 필요한 시간</li>
+</ul>
+<hr>
+<h2 id="재잘재잘">재잘재잘</h2>
+<p>&ldquo;<strong>백문이 불여일견이고 백견이 불여일타</strong>&ldquo;라는 말이 있듯이 개념은 이렇게 정리하는 것으로 마무리하고,<br>
+위에 나열한 선형 구조, 비선형 구조를 가진 자료구조의 개념을 하나 씩 살펴보며 구현해나가는 것을 목표로 설정해야겠다.</p>
+<blockquote>
+<p>아래의 글을 참조하여 게시물이 작성되었음을 알려드립니다.<br>
+<a href="https://m.blog.naver.com/PostView.nhn?blogId=islove8587&amp;logNo=220548856458&amp;proxyReferer=https:%2F%2Fwww.google.com%2F">🔍 네이버 &lsquo;islove8587&rsquo;님의 게시물</a><br>
+<a href="http://www.ktword.co.kr/abbr_view.php?m_temp1=4076">🔍 정보통신기술용어해설 게시물</a><br>
+<a href="https://gmlwjd9405.github.io/2018/08/13/data-structure-graph.html">🔍 &lsquo;HeeJeong Kown&rsquo;님의 게시물</a></p>
+</blockquote>
+</article>
+    </section>
+
+    <footer class="ui attached segment dream-tags" data-html2canvas-ignore>
+      
+        
+          <a class="ui label" href="/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0" title="자료구조">자료구조</a>
+        
+      
+      <div
+        class="ui label"
+        style="float: right; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>Save as image
+      </div>
+    </footer>
+
+    
+
+    
+    
+    
+      <div class="ui segment utterances-comments" data-html2canvas-ignore>
+        <script src="https://utteranc.es/client.js"
+          repo="funchcode/funchcode.github.io"
+          issue-term="og:title"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+        </script>
+      </div>
+    
+
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/me/me.png">
+      
+    </div>
+
+    
+    <div class="ui medium header">
+    
+      Command &#43; S
+      <div class="sub header" style="margin-top: 0.5rem;">이것저것 끄적끄적</div>
+    
+    </div>
+    
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="Archives"></i>
+      </a>
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="All Tags"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="All Categories"></i>
+      </a>
+    </div>
+  </section>
+
+  
+  <section class="ui attached center aligned segment dream-tags">
+    
+      <a class="ui label" href="/tags/%EB%81%84%EC%A0%81%EB%81%84%EC%A0%81" title="끄적끄적">끄적끄적</a>
+    
+      <a class="ui label" href="/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0" title="자료구조">자료구조</a>
+    
+  </section>
+  
+
+  
+  <section class="ui attached segment dream-categories">
+    <div class="ui accordion">
+      
+      
+      
+      
+      
+
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            <a href="/categories/%EB%81%84%EC%A0%81%EB%81%84%EC%A0%81" class="item">끄적끄적</a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/posts/2020-10-24-init/" class="item">일상을 기록하는 나만의 블로그 시작</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            <a href="/categories/%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%B5%ED%95%99" class="item">컴퓨터공학</a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/posts/2020-10-24-data-structure/" class="item">자료구조 정리</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+
+      
+    </div>
+  </section>
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="/index.xml">
+        <i class=" rss square icon" title="RSS"></i>
+      </a>
+    </div>
+  
+  
+    <div class="item">
+      <a href="mailto:funchcode@gmail.com">
+        <i class=" mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/funchcode" target="_blank">
+        <i class=" github icon" title="GitHub"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2020 Funch DevLog</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+    
+  </section>
+</article>
+
+  </div>
+</div>
+
+          </div>
+        </section>
+        <section class="back">
+          <div class="dream-max-width">
+            <div class="ui centered relaxed grid dream-grid dream-back">
+  
+  
+  
+    <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+      <article>
+        <div class="ui top attached segment">
+          <h3 class="ui header">🌞 안녕하세요.</h3>
+        </div>
+        <div class="ui bottom attached segment markdown-body">
+          <h3 id="-정-채환-chaehwan-jeong">🐶 <strong>정 채환</strong> (@Chaehwan, Jeong)</h3>
+<p><u>드디어 우리의 인연이 닿았군요. 반갑습니다.</u></p>
+<p>저라는 사람은<br>
+한 회사의 솔루션 엔지니어,<br>
+사랑하는 아내를 가진,<br>
+정 채환입니다.</p>
+<h3 id="현재-하고-있는-일">현재 하고 있는 일</h3>
+<p>웹 엔지니어(웹 기반 PDF솔루션)<br>
+경력 1년 차 주니어 개발자입니다.</p>
+<h3 id="주요-기술-스택">주요 기술 스택</h3>
+<ul>
+<li>🛠 Angular.js</li>
+<li>🛠 JavaScript &amp; TypeScript</li>
+<li>🛠 Java</li>
+<li>🛠 Spring Framework</li>
+</ul>
+<p>현재 <u>ePapyrus</u>에서 근무.</p>
+<dl>
+<dt>마지막 업데이트 날짜 (Last updated Date)</dt>
+<dd>2020. 10. 24</dd>
+</dl>
+
+        </div>
+      </article>
+    </section>
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">Social Links</h3>
+      </div>
+      <div class="ui bottom attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="/index.xml">
+        <i class="large rss square icon" title="RSS"></i>
+      </a>
+    </div>
+  
+  
+    <div class="item">
+      <a href="mailto:funchcode@gmail.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/funchcode" target="_blank">
+        <i class="large github icon" title="GitHub"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </section>
+
+  
+  
+</div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.backgroundDark = "black"
+  window.backgroundImageDark = "/me/background-dark.jpg"
+  window.darkNav =  true 
+  window.hasTwitterEmbed =  null 
+
+  if (window.hasTwitterEmbed) {
+    
+    window.twttr = (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {}
+      if (d.getElementById(id)) return t
+      js = d.createElement(s)
+      js.id = id
+      js.src = 'https://platform.twitter.com/widgets.js'
+      fjs.parentNode.insertBefore(js, fjs)
+
+      t._e = []
+      t.ready = function (f) {
+        t._e.push(f)
+      }
+
+      return t
+    })(document, 'script', 'twitter-wjs')
+  }
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
+
+  
+    
+      <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/ocaml.min.js"></script>
+     
+  
+
+  <script>
+  hljs.initHighlightingOnLoad()
+  setHighlightTheme()
+
+  function setHighlightTheme() {
+    var isDark = localStore.getItem('hugo-theme-dream-is-dark')
+    var lightTheme = "gruvbox-light"
+    var darkTheme = "gruvbox-dark"
+    var theme = isDark ? darkTheme : lightTheme
+
+    $('link[data-highlight]').attr('href', 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/' + theme + '.min.css')
+    $('pre').css('background', isDark ? '#333' : '')
+  }
+</script>
+
+
+
+
+
+    
+      <div class="ui inverted segment" id="dream-search">
+  <div class="ui search">
+    <div class="ui transparent input">
+      <input class="prompt" type="text" placeholder="Search" />
+    </div>
+    <div class="results"></div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $.getJSON('https:\/\/funchcode.github.io\//index.json', function (data) {
+      $('.ui.search').search({
+        source: data,
+        searchFields: ['title'],
+        showNoResults: true,
+      })
+    })
+  })
+</script>
+<script src="/js/search.js"></script>
+
+    
+
+    
+  </body>
+</html>

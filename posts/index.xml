@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Funch DevLog</title>
-    <link>https://funchcode.github.io/</link>
-    <description>Recent content on Funch DevLog</description>
+    <title>Posts on Funch DevLog</title>
+    <link>https://funchcode.github.io/posts/</link>
+    <description>Recent content in Posts on Funch DevLog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 24 Oct 2020 14:23:58 +0900</lastBuildDate><atom:link href="https://funchcode.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 24 Oct 2020 14:23:58 +0900</lastBuildDate><atom:link href="https://funchcode.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>일상을 기록하는 나만의 블로그 시작</title>
       <link>https://funchcode.github.io/posts/2020-10-24-init/</link>
