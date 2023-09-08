@@ -1,8 +1,0 @@
-
-
-
-    
-
-    
-
-[{"categories":["끄적끄적"],"description":" ","tags":["끄적끄적"],"title":"일상을 기록하는 나만의 블로그 시작","url":"https://funchcode.github.io/posts/2020-10-24-init/"},{"categories":["컴퓨터공학"],"description":"자료 구조란 무엇인가 ? 영어로는 Data Structure라고 한다.\n가장 일차원적으로 단어를 뜯어내어 생각해보자한다.\n Data: 한글로 직역하면 \u0026ldquo;자료\u0026quot;이다. 이는 현실 세계로부터 수집한 자료의 사실이나 개념의 값을 말한다. Structure: 일정한 설계 및 규칙을 가지며 대상이 얽어진 것을 말한다. 정보(Information): 특정한 용도로 사용하기 위해 자료를 처리/가공한 형태의 데이터를 정보라고 한다.  자료구조를 사용하는 목적은 ?  수 많은 자료의 데이터를 조직화하여 저장, 표현, 처리하기 위함이다.  자료구조를 고민해야하는 이유 ?  먼저 다양한 자료구조가 존재하지만, 모든 목적에 적합한 단일한 자료구조가 없다.","tags":["자료구조"],"title":"자료구조 정리","url":"https://funchcode.github.io/posts/2020-10-24-data-structure/"}]
