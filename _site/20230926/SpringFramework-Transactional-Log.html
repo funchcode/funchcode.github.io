@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="/assets/css/atom-one-light.css">
+	
+	<title>[Spring] Transactional 정리</title>
+	<link rel="stylesheet" type="text/css" href="/assets/css/002.css">
+	
+	<link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+	<link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+	<script src="/assets/js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="default_title">
+			<img src="/assets/img/mycomputer.png" />
+			
+			<h1>정채환(Chaehwan Jeong)</h1>
+			
+		</div>
+		<ul class="topbar">
+	<a href="/me"><li><u>A</u>bout</li></a>
+	<a href="https://twitter.com/funchcode" target="_blank"><li><u>T</u>witter</li></a>
+	<a href="https://github.com/funchcode" target="_blank"><li><u>G</u>ithub</li></a>
+</ul>
+		<div class="tag_list">
+			<ul id="tag-list">
+				<li><a href="/"><img src="/assets/img/disk.png" />(C:)</a>
+					<ul>
+						
+						
+						<li><a href="/tag/java/" title="Java"><img
+									src="/assets/img/folder.ico" />Java</a></li>
+						
+						<li><a href="/tag/tag1/" title="tag1"><img
+									src="/assets/img/folder.ico" />tag1</a></li>
+						
+						<li><a href="/tag/tag3/" title="tag3"><img
+									src="/assets/img/folder.ico" />tag3</a></li>
+						
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="post_list">
+			
+			<ul>
+				
+				<li>
+					<a href="/20230926/SpringFramework-Transactional-Log" title="[Spring] Transactional 정리"><img src="/assets/img/tree.ico" style="width: 32px; height: 32px;" title="[Spring] Transactional 정리" />
+						[Spring] Transactional 정리
+					</a>
+				</li>
+				
+				<li>
+					<a href="/20170916/markdown-test-page" title="Markdown Test Page"><img src="/assets/img/file.ico" style="width: 32px; height: 32px;" title="Markdown Test Page" />
+						Markdown Test Page
+					</a>
+				</li>
+				
+			</ul>
+			
+		</div>
+		<div class="post_total">
+			
+			<div class="left">2 object(s)</div>
+			
+			<div class="right">&nbsp;</div>
+		</div>
+	</div>
+	
+	<div class="content">
+		<div class="post_title">
+			<img src="/assets/img/file.png" />
+			<h1>[Spring] Transactional 정리</h1>
+			<a href="/">
+				<div class="btn"><span class="fa fa-times"></span></div>
+			</a>
+			<div class="btn btn_max"><span class="fa fa-window-maximize"></span></div>
+			<div class="btn"><span class="fa fa-window-minimize"></span></div>
+		</div>
+		<ul class="topbar">
+			<li>September 26, 2023</li>
+		</ul>
+		<div class="post_content">
+			<h2 id="spring-framework-transactional-개념-정리">Spring Framework Transactional 개념 정리</h2>
+
+<hr />
+
+<h3 id="spring-framework에서-설정할-때-주의할-점">Spring Framework에서 설정할 때 주의할 점</h3>
+
+<ol>
+  <li>적절한 범위 설정</li>
+  <li>예외에 대한 처리</li>
+  <li>PlatformTransactionManager 트랜잭션 관리자 구성</li>
+  <li>경계 정의</li>
+  <li>읽기 전용 트랜잭션</li>
+  <li>적절한 격리 수준 isolation 설정</li>
+  <li>전파 구성 주의 propagation</li>
+  <li>중첩 트랜잭션 주의 nested</li>
+  <li>Spring AOP 사용 시 주의</li>
+  <li>Spring 트랜잭션 관리자, 외부 트랜잭션 관리자</li>
+  <li>Auto Commit Mode 주의</li>
+  <li>데드락</li>
+</ol>
+
+<hr />
+
+<h3 id="db-트랜잭션을-설정하는-이유">DB 트랜잭션을 설정하는 이유</h3>
+
+<ol>
+  <li>데이터 일관성 보장</li>
+  <li>원자성 보장</li>
+  <li>동시성 관리</li>
+  <li>롤백 및 회복 관리</li>
+  <li>무결성</li>
+  <li>오류 처리 및 로깅</li>
+</ol>
+
+<hr />
+
+<h3 id="네가지-격리isolation-수준">네가지 격리(isolation) 수준</h3>
+
+<ol>
+  <li>READ UNCOMMITTED
+    <ul>
+      <li>dirty read</li>
+      <li>실제로는 잘 사용되지 않는다.</li>
+    </ul>
+  </li>
+  <li>READ COMMITTED</li>
+  <li>REPEATABLE READ</li>
+  <li>SERIALIZABLE
+    <ul>
+      <li>동시성을 완전히 차단</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="락lock-기반-동시성-제어-유형">락(Lock) 기반 동시성 제어 유형</h3>
+
+<ol>
+  <li>행 레벨 락 (Row-Level Locks)</li>
+  <li>테이블 락 (Table-Level Locks)</li>
+</ol>
+
+<hr />
+
+<h3 id="데드락dead-lock이-발생할-수-있는-상황">데드락(Dead Lock)이 발생할 수 있는 상황</h3>
+
+<ol>
+  <li>상호 배제 (Mutual Exclusion)</li>
+  <li>보유 및 대기 (Hold and Wait)</li>
+  <li>비선점 (No Preemption)</li>
+  <li>순환 대기 (Circular Wait)</li>
+</ol>
+
+<hr />
+
+<h3 id="트랜잭션-propagation-구성-주의해야-할-점">트랜잭션 Propagation 구성 주의해야 할 점</h3>
+
+<ol>
+  <li>트랜잭션 메소드 경계 파악
+    <ul>
+      <li>메소드가 새로운 트랜잭션을 시작하는지 기존 트랜잭션에 참여하는지 파악</li>
+    </ul>
+  </li>
+  <li>적절한 트랜잭션 전파 옵션 사용</li>
+  <li>트랜잭션 범위 최소화, 성능 향상 고려와 데이터 일관성 유지에 주의</li>
+  <li>중첩 트랜잭션 주의
+    <ul>
+      <li>특정 상황에서만 유용, 불필요한 경우 코드 복잡도 증가</li>
+    </ul>
+  </li>
+  <li>트랜잭션 전파와 예외 처리 고려
+    <ul>
+      <li>예외가 발생할 때 각 트랜잭션 전파 옵션에 따라 롤백되거나 커밋 됨</li>
+    </ul>
+  </li>
+  <li>테스트와 검증
+    <ul>
+      <li>전파를 구성한 다음에는 트랜잭션 동작을 검증하는 테스트 코드를 작성</li>
+    </ul>
+  </li>
+  <li>트랜잭션 범위와 데이터베이스 커넥션 관리
+    <ul>
+      <li>데이터베이스 커넥션을 공유해서 사용할 수 있음</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="트랜잭션-경계를-나누는-기준">트랜잭션 경계를 나누는 기준</h3>
+
+<ol>
+  <li>단위 업무 Use Case</li>
+  <li>논리적 연산의 완전성</li>
+  <li>예외 처리 및 롤백
+    <ul>
+      <li>특정 작업이 실패한 경우 롤백해야 하는 범위와 커밋해야 하는 범위</li>
+    </ul>
+  </li>
+  <li>성능 최적화
+    <ul>
+      <li>데이터베이스 락 충돌을 줄이고 동시성을 향상시킬 목적</li>
+    </ul>
+  </li>
+  <li>복구 가능성 및 로깅</li>
+</ol>
+
+<hr />
+
+<h3 id="spring-framework-transactional-readonly-옵션">Spring Framework @Transactional readonly 옵션</h3>
+
+<ul>
+  <li>수정 작업을 시도하는 경우 예외가 발생</li>
+  <li>한 번 읽은 값은 캐시되어 트랜잭션 내에서 중복 읽기를 최소화할 수 있다.</li>
+</ul>
+
+<hr />
+
+<h3 id="중첩-트랜잭션nested-transaction에서-주의할-점">중첩 트랜잭션(Nested Transaction)에서 주의할 점</h3>
+
+<ol>
+  <li>부모 트랜잭션 혼동으로 인해 원치 않는 롤백 발생</li>
+  <li>부모 트랜잭션과 별개로 커밋, 롤백이 될 수 있어 데드락 위험성</li>
+  <li>트랜잭션 간의 관계를 이해하고 있어야 하므로 코드 복잡성 증가</li>
+  <li>테스트 어려움</li>
+  <li>중첩 트랜잭션 지원은 DB 벤더마다 다를 수 있음</li>
+</ol>
+
+<hr />
+
+<h3 id="spring-framework-transactional-의-propagation-옵션-설명">Spring Framework @Transactional 의 propagation 옵션 설명</h3>
+
+<ol>
+  <li>REQUIRED
+    <ul>
+      <li>새로운 트랜잭션 시작, 이미 실행 중인 트랜잭션이 있으면 참가 없으면 생성.</li>
+    </ul>
+  </li>
+  <li>SUPPORTS
+    <ul>
+      <li>이미 실행 중인 트랜잭션이 있으면 참가 없으면 없는 대로.</li>
+    </ul>
+  </li>
+  <li>MANDATORY
+    <ul>
+      <li>부모 트랜잭션이 없는 경우 예외 발생</li>
+    </ul>
+  </li>
+  <li>REQUIRES_NEW
+    <ul>
+      <li>항상 새로운 트랜잭션이 시작, 독립적으로 커밋 또는 롤백 됨.</li>
+    </ul>
+  </li>
+  <li>NOT_SUPPORTED
+    <ul>
+      <li>이미 실행 중인 트랜잭션이 있으면 취소하고 없이 진행.</li>
+    </ul>
+  </li>
+  <li>NEVER
+    <ul>
+      <li>이미 실행 중인 트랜잭션이 있으면 예외. 트랜잭션 없이 진행되어야 함.</li>
+    </ul>
+  </li>
+  <li>NESTED
+    <ul>
+      <li>이미 실행 중인 트랜잭션이 있으면 해당 트랜잭션 내에 중첩된 트랜잭션을 시작.</li>
+      <li>중첩된 트랜잭션은 별도로 커밋 또는 롤백 될 수 있음.</li>
+      <li>부모 트랜잭션이 커밋되면 같이 커밋, 롤백되면 같이 롤백.</li>
+    </ul>
+  </li>
+</ol>
+
+			
+			<br>
+<hr>
+<br>
+<div class="donate">
+	<p>Did you like of something here? How about helping me buy some game?<br>
+	I'll appreciate it!</p>
+	<p>Bitcoin Wallet <i class="fa fa-btc"></i> <br>Ethereum Wallet <i class="fa fa-money"></i> </p>
+</div>
+			
+		</div>
+	</div>
+	
+	<script src="/assets/js/001.js"></script>
+	<script src="/assets/js/002.js"></script>
+	<div class="footer">
+		<p>Created by <a href="http://github.com/h01000110" target="_blank">h01000110 (hi)</a> | Code licensed under <a
+				href="https://github.com/h01000110/h01000110.github.io/blob/master/LICENSE" target="_blank">MIT
+				License</a></p>
+	</div>
+</body>
+
+</html>
