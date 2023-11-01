@@ -3,7 +3,6 @@ layout: post
 title: "[Design Pattern] 전략 패턴"
 subtitle: 디자인 패턴 중 하나인 전략패턴(Strategy Pattern)을 정리한다.
 cover-img: /assets/img/path.jpg
-thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/path.jpg
 tags: [design pattern]
 ---
